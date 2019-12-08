@@ -13,12 +13,16 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     Text healthText;
 
+    [SerializeField]
+    AudioClip playerDamageSFX;
+
     void Start()
     {
         healthText.text = health.ToString();
     }
     private void OnTriggerEnter(Collider other)
     {
+        GetComponent<AudioSource>().PlayOneShot(playerDamageSFX);
         health = health -  healthDecrease;
         healthText.text = health.ToString();
     }
